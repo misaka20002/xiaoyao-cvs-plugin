@@ -367,6 +367,9 @@ export default class user {
         Bot.logger.mark(`开始米社签到任务`);
         let isAllSign = this.configSign.isAllSign
         let userIdList = [];
+        let isAllSignGroupPush = this.configSign.isAllSignGroupPush
+        let allSignGroupList = []
+        allSignGroupList = this.configSign.allSignGroupList
         let dir = './data/MysCookie/'
         if (isV3) {
             if (!fs.existsSync(dir)) {
@@ -416,6 +419,20 @@ export default class user {
         } else {
             await utils.relpyPrivate(await gsCfg.getMasterQQ(), tips)
             await utils.sleepAsync(lodash.random(1, 20) * 1000)
+            /**推送给各个群 */
+            if (isAllSignGroupPush) {
+                // logger.info('[自动米游社全部签到]：开始自动推送各群')
+                for (let i = 0; i < allSignGroupList.length; i++) {
+                    try {
+                        let groupID = Bot.pickGroup(allSignGroupList[i])
+                        await groupID.sendMsg(tips)
+                        logger.info(`[自动米游社全部签到-p]：推送群${allSignGroupList[i]}成功`)
+                    } catch (error) {
+                        logger.error(`[自动米游社全部签到-p]：推送群${allSignGroupList[i]}失败`)
+                    }
+                    await utils.sleepAsync(1000)
+                }
+            }
         }
         let _reply = e.reply
         let msg = e?.msg;
@@ -499,6 +516,19 @@ export default class user {
             _reply(msg)
         } else {
             await utils.relpyPrivate(await gsCfg.getMasterQQ(), msg)
+            /**推送给各个群 */
+            if (isAllSignGroupPush) {
+                for (let i = 0; i < allSignGroupList.length; i++) {
+                    try {
+                        let groupID = Bot.pickGroup(allSignGroupList[i])
+                        await groupID.sendMsg(msg)
+                        logger.info(`[自动米游社全部签到完成-p]：推送群${allSignGroupList[i]}成功`)
+                    } catch (error) {
+                        logger.error(`[自动米游社全部签到完成-p]：推送群${allSignGroupList[i]}失败`)
+                    }
+                    await utils.sleepAsync(1000)
+                }
+            }
         }
         mysTask = false;
     }

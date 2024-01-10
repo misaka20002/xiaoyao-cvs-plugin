@@ -8,8 +8,15 @@ mysBbsTime: 0 2 0 * * ?
 # 米币是否自动签到
 ismysSign: false
 
-# 签到成功是否推送
+# 签到成功是否推送给主人
 isAllSign: false
+# 签到成功是否推送给群聊
+isAllSignGroupPush: false
+# 签到成功推送的群号（可以自己按照格式增减数量）
+allSignGroupList:
+  - 123456789
+  - 987654321
+  
 # 米游社签到定时任务，Cron表达式，默认00:02开始执行签到
 allSignTime: 0 2 0 * * ? 
 # 是否自动签到
