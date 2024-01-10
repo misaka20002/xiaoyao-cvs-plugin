@@ -404,7 +404,7 @@ export default class user {
         }
         mysTask = true;
         let userIdkeys = Object.keys(userIdList);
-        let tips = ['开始米社签到任务']
+        let tips = ['派蒙要开始米社签到任务了\n(新用户请发送#扫码登录；ck过期请发送#刷新CK)']
         let time = userIdkeys.length * 25 + 5 + (userIdkeys.length / 3 * 60)
         let finishTime = moment().add(time, 's').format('MM-DD HH:mm:ss')
         tips.push(`\n签到用户：${userIdkeys.length}个`)
