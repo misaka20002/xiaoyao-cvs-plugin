@@ -14,13 +14,9 @@ yunzai-bot扩展图鉴以及体力优化;
 其余功能支持：stoken相关功能支持、云原神签到支持、扫码登录
 
 #### 安装教程
-使用gitee
-```
-git clone https://gitee.com/Ctrlcvs/xiaoyao-cvs-plugin.git ./plugins/xiaoyao-cvs-plugin/
-```
 使用github
 ```
-git clone https://github.com/Ctrlcvs/xiaoyao-cvs-plugin.git ./plugins/xiaoyao-cvs-plugin/
+git clone https://github.com/misaka20002/xiaoyao-cvs-plugin.git ./plugins/xiaoyao-cvs-plugin/
 ```
 
 
